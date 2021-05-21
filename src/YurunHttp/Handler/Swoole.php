@@ -486,6 +486,11 @@ class Swoole implements IHandler
             $cookieManager->setCookie($name, $value);
         }
         $cookies = $cookieManager->getRequestCookies($request->getUri());
+        
+        if(empty($cookies)){
+            return;
+        }
+        
         if ($http2Request)
         {
             $http2Request->cookies = $cookies;
